@@ -54,6 +54,7 @@ $(document).ready(function () {
 //Store all of the questions into an array so I can access them later
 quizQuestionArray=[];
 quizQuestionArray.push(quizQuestionOne, quizQuestionTwo, quizQuestionThree, quizQuestionFour, quizQuestionFive);
+questionAnswers=[];
 console.log(quizQuestionArray);
 for(let i = 0; i < quizQuestionArray.length; i++){
     console.log(quizQuestionArray[i].question);
@@ -62,4 +63,5 @@ for(let i = 0; i < quizQuestionArray.length; i++){
     console.log(quizQuestionArray[i].answers.c);
 }
 
+quizQuestionOne.answers.each(function() {$(".quizContent").html("<input type='radio'>")});
 });
