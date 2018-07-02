@@ -185,11 +185,11 @@ $(document).ready(function () {
         //Display the results of the game
         } else {
             welcome.html("<h1> Thanks for playing!</h1>")
-            quizArea.html("<div> You got: " + incorrect + "/5 questions incorrect</div>");
-            quizArea.append("<div> You got: " + correct + "/5 questions correct</div>");
-
+            quizArea.html("<div> You got: " + incorrect + "/5 questions incorrect</div>" + 
+            "<div> You got: " + correct + "/5 questions correct</div>" +
+    
             //At the end of the game, display this button to reset the game.
-            quizArea.append("<button class='btn-style btnReset'> Click to reset! </button>");
+            "<button class='btn-style btnReset'> Click to reset! </button>");
         }
     }
 
