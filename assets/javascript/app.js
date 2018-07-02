@@ -90,11 +90,13 @@ $(document).ready(function () {
     //Render the game after the button was clicked
     $(".btnStart").on("click", function () {
         quizRender();
+        welcome.addClass('greenTimer');
+        welcome.html("<div><h2> Time remaining: " + quizTimer + "</h2></div>");
     });
 
     //Countdown timer
     function countdownTimer() {
-
+        
         //Reset the timer here if need be, fun fact: You will.
         timer = setInterval(decrease, 1000);
 
@@ -104,15 +106,15 @@ $(document).ready(function () {
                 quizTimer--;
             }
             if (quizTimer > 6) {
-                $(".welcome").addClass("greenTimer");
+                welcome.addClass("greenTimer");
             }
             if (quizTimer < 6 && quizTimer > 3) {
-                $(".welcome").removeClass("greenTimer");
-                $(".welcome").addClass("yellowTimer");
+                welcome.removeClass("greenTimer");
+                welcome.addClass("yellowTimer");
             }
             if (quizTimer < 3) {
-                $(".welcome").removeClass("yellowTimer");
-                $(".welcome").addClass("redTimer");
+                welcome.removeClass("yellowTimer");
+                welcome.addClass("redTimer");
             }
             //If the user didn't answer we'll do this instead
             if (quizTimer === 0) {
@@ -127,7 +129,8 @@ $(document).ready(function () {
 
     //Render the game, give the divs classes to be clickable
     function quizRender() {
-
+        welcome.removeClass('greenTimer');
+        welcome.addClass('greenTimer');
         //Start the timer
         countdownTimer();
 
@@ -181,6 +184,7 @@ $(document).ready(function () {
         if (questionNumber < 6) {
             quizRender();
             quizTimer = 10;
+            welcome.html("<div><h2> Time remaining: " + quizTimer + "</h2></div>")
 
         //Display the results of the game
         } else {
@@ -213,7 +217,7 @@ $(document).ready(function () {
         }
     });
 
-    //Reset the game IF THIS WAS WORKING HRNGGGGG
+    //Reset the game
     function resetGame() {
         quizTimer = 10;
         counter = 0;
@@ -225,8 +229,8 @@ $(document).ready(function () {
         quizRender();
     }
 
-    //THIS DOESN'T WORK EITHER HRNGGGGG
-    $("body").on("click", ".btnReset", function () {
+    //Click the button to restart
+    $("body").on("click", ".btnReset",   function () {
         console.log("Working!");
         resetGame();
     });
