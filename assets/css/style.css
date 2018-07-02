@@ -37,4 +37,41 @@ body{
 .quizContent{
     width: 850px;
     margin: 20px auto;
+    padding:10px;
+}
+
+.quizArea{
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+.btn-style {
+    height: 50px;
+    width: 200px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.greenTimer{
+    color: green;
+}
+
+.yellowTimer{
+    color:yellow;
+}
+
+.redTimer{
+    color:red;
+}
+
+.setup {
+    margin-bottom: 10px;
+}
+
+question {
+    margin-bottom: 15px;
+}
+
+.answer {
+    margin: 15px 15px;
 }
