@@ -52,7 +52,7 @@ body{
 .btn-style {
     height: 50px;
     width: 200px;
-    margin-bottom: 20px;
+    margin: 20px 0;
     border-radius: 5px;
 }
 
@@ -61,7 +61,7 @@ body{
     box-shadow: 0 10px 20px rgba(0,0,0,.5);
 }
 
-.btn-style:active{
+.btn-style:active{  
     transform: translateY(-1px);
     box-shadow: 0 5px 10px rgba(0,0,0,.5);
 }
