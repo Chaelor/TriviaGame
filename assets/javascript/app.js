@@ -226,7 +226,7 @@ $(document).ready(function () {
     }
 
     //THIS DOESN'T WORK EITHER HRNGGGGG
-    $(".btnReset").on("click", function () {
+    $("body").on("click", ".btnReset", function () {
         console.log("Working!");
         resetGame();
     });
