@@ -18,7 +18,7 @@ $(document).ready(function () {
                 b: "The Atomic Bomb",
                 c: "The city of New York"
             },
-            correctAnswer: "The Aromic Bomb"
+            correctAnswer: "The Atomic Bomb"
         }
     quizQuestionThree =
         {
@@ -62,26 +62,27 @@ $(document).ready(function () {
     //The only timer, go back and change this to have a few timers when I refresh the page
 
     var quizArea = $(".quizArea");
+    var welcome = $(".welcome");
     var quizTimer = 10;
     var counter = 0;
-    let questionNumber = 1;
-    var selectedAnswer =  0;
+    var questionNumber = 1;
+    var userChoice = 0;
     var incorrect = 0;
     var correct = 0;
 
     function startGame() {
-        quizArea.html("<p><button class='btn-style btn'> Click to begin </button></p>");
+        quizArea.html("<p><button class='btn-style btnStart'> Click to begin </button></p>");
     }
     startGame();
 
 
-    $(".btn").on("click", function () {
-        countdownTimer();
+    $(".btnStart").on("click", function () {
         quizRender();
     })
 
+
     function countdownTimer() {
-        setInterval(decrease, 1000);
+        timer = setInterval(decrease, 1000);
         function decrease() {
             if (quizTimer > 0) {
                 quizTimer--;
@@ -97,38 +98,99 @@ $(document).ready(function () {
                 $(".welcome").removeClass("yellowTimer");
                 $(".welcome").addClass("redTimer");
             }
-            $(".welcome").html("<div> Time remaining: " + quizTimer + "</div>")
+            if(quizTimer === 0) {
+                renderNoTimeRemaining();
+                clearInterval(timer);
+            }
+            welcome.html("<div><h2> Time remaining: " + quizTimer + "</h2></div>")
         }
     }
 
     function quizRender() {
-        //Add a go to results page
-        if (questionNumber === 6) {
-            $(".welcome").html("<h1> Thanks for playing!</h1>")
-            quizArea.html("<p> You got: " + incorrect + "/5 questions incorrect</p>");
-            quizArea.html("<p> You got: " + correct + "/5 questions correct</p>")
+        countdownTimer();
+        quizArea.html("<div class='setup'> Question " + questionNumber + ": </div>" +
+            "<div class='question'> " + quizQuestionsArray[counter].question + "</div>")
+        quizArea.append(
+            "<div class='answer'>" + quizQuestionsArray[counter].answers.a + "</div>" +
+            "<div class='answer'>" + quizQuestionsArray[counter].answers.b + "</div>" +
+            "<div class='answer'>" + quizQuestionsArray[counter].answers.c + "</div>");
+        questionNumber++;
+    }
+
+    function renderWin() {
+        welcome.removeClass("greenTimer");
+        welcome.removeClass("yellowTimer");
+        welcome.removeClass("redTimer");
+        quizArea.html("<div><h2>Congratulations! You got the question correct!</h2></div>");
+        correct++;
+        setTimeout(transitionTimer, 5000);
+    }
+
+    function renderLoss() {
+        welcome.removeClass("greenTimer");
+        welcome.removeClass("yellowTimer");
+        welcome.removeClass("redTimer");
+        quizArea.html("<div class='redTimer'><h2>RIPPPPPP! You are incorrect!</h2></div>");
+        incorrect++;
+        setTimeout(transitionTimer, 5000);
+    }
+
+    function renderNoTimeRemaining() {
+        welcome.removeClass("greenTimer");
+        welcome.removeClass("yellowTimer");
+        welcome.removeClass("redTimer");
+        quizArea.html("<div class='redTimer'><h2>HOW DARE YOU NOT ANSWER! Counts as incorrect!</h2></div>");
+        incorrect++;
+        counter++;
+        setTimeout(transitionTimer, 5000);
+    }
+
+    function transitionTimer() {
+        if (questionNumber < 6) {
+            quizRender();
+            quizTimer = 10;
+            countdownTransitionTimer();
         } else {
-            quizArea.html("<div class='setup'> Question " + questionNumber + ": </div>" +
-                "<div class='question'> " + quizQuestionsArray[counter].question + "</div>")
-            quizArea.append(
-                "<p class='answer'> a: " + quizQuestionsArray[counter].answers.a + "</p>" +
-                "<p class='answer'> b: " + quizQuestionsArray[counter].answers.b + "</p>" +
-                "<p class='answer'> c: " + quizQuestionsArray[counter].answers.c + "</p>");
-            questionNumber++;
+            welcome.html("<h1> Thanks for playing!</h1>")
+            quizArea.html("<div> You got: " + incorrect + "/5 questions incorrect</div>");
+            quizArea.append("<div> You got: " + correct + "/5 questions correct</div>");
+            quizArea.append("<div><button class='btn-style btnReset'> Try again! </button></div>");
         }
     }
 
-    //Change this to incorporate a victory//loss screen
+    function resetGame() {
+    quizTimer = 10;
+    counter = 0;
+    questionNumber = 1;
+    userChoice = 0;
+    incorrect = 0;
+    correct = 0;
+
+    quizRender();
+    }
+
+    //User selects their choice by clicking on some class with .answer
     $("body").on("click", ".answer", function (event) {
-        selectedAnswer = $(this).text();
-        if (selectedAnswer === correctAnswersArray[counter]) {
-            console.log(this + "Win");
-            console.log("Win");
-            correct++
+
+        //Stores the choice
+        userChoice = $(this).text();
+
+        //Check to see if they got it right
+        if (userChoice === correctAnswersArray[counter]) {
+            clearInterval(timer);
+            renderWin();
+            counter++;
+
+        //If they got it wrong
         } else {
-            console.log(this + "Lose");
-            console.log("Lose");
-            incorrect++;
+            clearInterval(timer);
+            renderLoss();
+            counter++;
         }
-    })
+    });
+
+    $(".btnReset").on("click", function() {
+        resetGame();
+    });
+
 });
