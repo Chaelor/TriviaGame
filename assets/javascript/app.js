@@ -118,6 +118,7 @@ $(document).ready(function () {
             }
             //If the user didn't answer we'll do this instead
             if (quizTimer === 0) {
+                welcome.html("<h2 class='redTimer'>TIME OUT!</h2>");
                 renderNoTimeRemaining();
                 clearInterval(timer);
             }
@@ -153,7 +154,8 @@ $(document).ready(function () {
         welcome.removeClass("greenTimer");
         welcome.removeClass("yellowTimer");
         welcome.removeClass("redTimer");
-        quizArea.html("<div class='greenTimer'><h2>Congratulations! You got the question correct!</h2></div>");
+        welcome.html("<h2 class='greenTimer'>Congratulations!</h2>")
+        quizArea.html("<div><h2>You got the question correct! 5 seconds till the next one!</h2></div>");
         correct++;
         setTimeout(transitionTimer, 5000);
     }
@@ -163,7 +165,8 @@ $(document).ready(function () {
         welcome.removeClass("greenTimer");
         welcome.removeClass("yellowTimer");
         welcome.removeClass("redTimer");
-        quizArea.html("<div class='redTimer'><h2>RIPPPPPP! You are incorrect!</h2></div>");
+        welcome.html("<h2 class='redTimer'> RIIIIIIIIIIP!</h2>");
+        quizArea.html("<div><h2>You are incorrect! 5 seconds till the next one!</h2></div>");
         incorrect++;
         setTimeout(transitionTimer, 5000);
     }
@@ -173,7 +176,8 @@ $(document).ready(function () {
         welcome.removeClass("greenTimer");
         welcome.removeClass("yellowTimer");
         welcome.removeClass("redTimer");
-        quizArea.html("<div class='redTimer'><h2>HOW DARE YOU NOT ANSWER! Counts as incorrect!</h2></div>");
+        welcome.html("<h2 class='redTimer'>TIME OUT!</h2>");    
+        quizArea.html("<div><h2>HOW DARE YOU NOT ANSWER! Counts as incorrect!</h2></div>");
         incorrect++;
         counter++;
         setTimeout(transitionTimer, 5000);
