@@ -1,3 +1,4 @@
+/******** Making sure the html and body span the whole are ********/
 html {
     width: 100%;
     height: 100%;
@@ -10,19 +11,55 @@ body{
     background-attachment:fixed;
 }
 
-.mainContainer h1{
-    width: 900px;
+/******** CSS FOR HEADER AND FOOTER ********/
+header{
+    width:100%;
     margin: 0 auto;
+}
+
+header h1{
+    font-family: 'Kurale', serif;
+    color:white;
+}
+
+footer{
+    position: fixed;
+    bottom:0;
+    padding-top: 15px;
+    border-top: solid 10px;
+    border-color: #4aaaa5;
+    height:50px;
     text-align: center;
-    font-size: 3em;
-    margin-top: 30px;
+    width: 100%;
     font-family: 'Kurale', serif;
 }
 
+.navbar-brand {
+    background-color: #4aaaa5;
+
+}
+
+.navbar {
+    padding:0;
+    color:white;
+}
+
+.nav-item:hover{
+    background-color: #4aaaa5;
+    border-radius: 5px;
+}
+
+.ml-auto {
+    margin-top: 7px;
+    justify-content: center;
+}
+
+
+/******** Quiz Content ********/
 .quizContainer{
-    width: 880px;
+    width: 1100px;
     margin: 40px auto;
-    background-color:rgba(192, 135, 144, 0.9);
+    background-color: rgba(111, 131, 140, 0.85);
     border-radius:5px;
 }
 
@@ -55,34 +92,20 @@ body{
     border-radius: 5px;
 }
 
-.btn-style:hover{ 
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,.5);
-}
-
-.btn-style:active{  
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0,0,0,.5);
-}
-
 .greenTimer{
     color: green;
 }
 
 .yellowTimer{
-    color:yellow;
+    color:rgb(185, 185, 30);
 }
 
 .redTimer{
-    color:red;
+    color:rgb(133, 21, 21);
 }
 
 .setup {
     margin-bottom: 10px;
-}
-
-question {
-    margin-bottom: 15px;
 }
 
 .answer {
@@ -94,12 +117,23 @@ question {
     transition: all .2s;
 }
 
+/******** Hover over animations ********/
 .answer:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0,0,0,.5);
 }
 
 .answer:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,.5);
+}
+
+.btn-style:hover{ 
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.5);
+}
+
+.btn-style:active{  
     transform: translateY(-1px);
     box-shadow: 0 5px 10px rgba(0,0,0,.5);
 }
