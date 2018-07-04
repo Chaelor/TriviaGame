@@ -37,12 +37,12 @@ footer{
 .navbar-brand {
     background-color: #4aaaa5;
     border-radius:2px;
-    font-family: 'Kurale', serif;
 }
 
 .navbar {
     padding:0;
     color:white;
+    font-family: 'Kurale', serif;
 }
 
 .nav-item:hover{
