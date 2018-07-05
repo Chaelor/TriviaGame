@@ -40,7 +40,7 @@ footer{
 
 .navbar-brand {
     background-color: #4aaaa5;
-    border-radius:2px;
+    animation: moveInLeft 1s ease-out;
 }
 
 .navbar {
