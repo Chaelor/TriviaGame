@@ -166,7 +166,8 @@ $(document).ready(function () {
         welcome.removeClass("yellowTimer");
         welcome.removeClass("redTimer");
         welcome.html("<h2 class='redTimer'> RIIIIIIIIIIP!</h2>");
-        quizArea.html("<div><h2>You are incorrect! 5 seconds till the next one!</h2></div>");
+        quizArea.html("<div><h2>You are incorrect! 5 seconds till the next one! The correct answer was '" 
+        + correctAnswersArray[counter] + "'.</h2></div>");
         incorrect++;
         setTimeout(transitionTimer, 5000);
     }
